@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            width: 100%;
+            height: 100vh;
+            background: url("../public/img/dashboard.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+        }
+
+        .left-menu {
+            background: white;
+            position: relative;
+            width: 4.5rem;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all .4s ease;
+        }
+
+        .left-menu:hover {
+            width: 13rem;
+        }
+
+        .left-menu ul li a {
+            display: flex;
+        }
+
+        .logo {
+            width: 80px;
+            position: relative;
+            top: 1rem;
+            left: 0.5rem;
+            display: flex;
+            margin: 10px 0 0 0px;
+            justify-content: center;
+            align-items: center;
+            margin-left: -45px;
+        }
+
+        .logo img {
+            width: 100%;
+            z-index: 100;
+            position: absolute;
+        }
+
+        .logo span {
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            position: relative;
+            left: 180px;
+            color: #32bac4;
+            font-size: 18px;
+            display: table;
+            text-align: left;
+            width: 300px;
+            text-decoration: none;
+            padding: 10px;
+            font-family: 'Poppins', 'sans-serif';
+        }
+
+        .left-menu ul {
+            margin-top: 2rem;
+            margin-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        ul li {
+            font-family: 'Poppins', sans-serif;
+            list-style: none;
+            margin-bottom: 1rem;
+            align-items: center;
+            transition: all .3s linear;
+        }
+
+        ul li a {
+            padding: 0.5rem;
+            color: #30dbd3;
+            text-decoration: none;
+        }
+
+        ul li a i {
+            text-decoration: none;
+            color: #3cb9af;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all .3s linear;
+            margin-right: 1.2rem;
+        }
+
+        .sidebar-item i {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+        }
+
+        #settings {
+            position: absolute;
+            bottom: 1rem;
+        }
+
+        .left-menu ul li:hover {
+            transform: translateX(.4rem);
+            transition: all .4s linear;
+        }
+
+        .left-menu ul li:hover .fa-solid,
+        .left-menu ul li:hover a {
+            font-weight: bold;
+            color: rgba(98, 238, 219, 0.945);
+        }
+
+        body, h1, h2, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #3498db;
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .title {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            font-size: 50px; 
+            padding-left: 30%;
+            padding-right: 5%;
+        }
+
+        .sidebar-title {
+            display: none;
+        }
+
+        .left-menu:hover .sidebar-title {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="left-menu">
+            <div class="logo">
+                <img src="./logo.png" alt="">
+                <span class="sidebar-title"><a href="">Dashboard</a></span>
+            </div>
+            <ul>
+                <li class="sidebar-item"><a class="sidebar-link" id="facilities-link" href="/facilities"><i
+                            class="fa-solid fa-file-pen"></i>College Facilities</a>
+                </li>
+                <li class="sidebar-item"><a class="sidebar-link" id="reviews-link"
+                        href="/reviews?collegeName=VITB"><i class="fa-solid fa-user"></i>Students Reviews</a>
+                </li>
+                <li class="sidebar-item" id="settings"><a class="sidebar-link" href="/"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i>LogOut</a></li>
+            </ul>
+        </div>
+        <main>
+            <div id="message-content"></div>
+        </main>
+        <div class="right-content"></div>
+    </div>
+    <script>
+        function getQueryVariable(variable) {
+            const query = window.location.search.substring(1);
+            const vars = query.split('&');
+            for (let i = 0; i < vars.length; i++) {
+                const pair = vars[i].split('=');
+                if (decodeURIComponent(pair[0]) === variable) {
+                    return decodeURIComponent(pair[1]);
+                }
+            }
+            return null;
+        }
+
+        const instituteName = getQueryVariable("collegeName");
+
+        const messageContent = document.getElementById("message-content");
+        if (instituteName) {
+            messageContent.innerHTML = `Welcome to ${instituteName} Dashboard`;
+        }
+    </script>
+</body>
+
+</html>

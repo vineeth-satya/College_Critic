@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Facilities Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+
+        .left-menu {
+            background: white;
+            position: relative;
+            width: 4.5rem;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all .4s ease;
+        }
+
+        .left-menu:hover {
+            width: 13rem;
+        }
+
+        .left-menu ul li a {
+            display: flex;
+        }
+
+        .logo {
+            width: 80px;
+            position: relative;
+            top: 1rem;
+            left: 0.5rem;
+            display: flex;
+            margin: 10px 0 0 0px;
+            justify-content: center;
+            align-items: center;
+            margin-left: -45px;
+        }
+
+        .logo img {
+            width: 100%;
+            z-index: 100;
+            position: absolute;
+        }
+
+        .logo span {
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            position: relative;
+            left: 180px;
+            color: #32bac4;
+            font-size: 18px;
+            display: table;
+            text-align: left;
+            width: 300px;
+            text-decoration: none;
+            padding: 10px;
+            font-family: 'Poppins', 'sans-serif';
+        }
+
+        .left-menu ul {
+            margin-top: 2rem;
+            margin-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        ul li {
+            font-family: 'Poppins', sans-serif;
+            list-style: none;
+            margin-bottom: 1rem;
+            align-items: center;
+            transition: all .3s linear;
+        }
+
+        ul li a {
+            padding: 0.5rem;
+            color: #30dbd3;
+            text-decoration: none;
+        }
+
+        ul li a i {
+            text-decoration: none;
+            color: #3cb9af;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all .3s linear;
+            margin-right: 1.2rem;
+        }
+
+        .sidebar-item i {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+        }
+
+        #settings {
+            position: absolute;
+            bottom: 1rem;
+        }
+
+        .left-menu ul li:hover {
+            transform: translateX(.4rem);
+            transition: all .4s linear;
+        }
+
+        body, h1, h2, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: #f8f8f8;
+            height: 100vh;
+            background-image: url("https://images.unsplash.com/photo-1550305080-4e029753abcf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80");
+        }
+
+        header {
+            background-color: #30dbd3;
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin-bottom: 20px;
+        }       
+
+        .title {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .sidebar-title {
+            display: none;
+        }
+
+        .left-menu:hover .sidebar-title {
+            display: block;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            border-radius: 10px;
+      
+        }
+       
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="range"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="radio"] {
+            margin: 0;
+        }
+
+        .image-upload {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label[for="file"] {
+            display: inline-block;
+            background-color: #30dbd3;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        label[for="file"]:hover {
+            background-color: #30dbd3;
+        }
+
+        .btn {
+            width: 100%;
+            background-color: #30dbd3;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .right-content {
+            right: 0;
+            top: 0;
+            width: calc(100% - 4.5rem);
+        }
+
+        .btn:hover {
+            background-color: #30dbd3;
+        }
+
+        #image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        #image-preview img {
+            max-width: 150px;
+            max-height: 150px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="left-menu">
+            <div class="logo">
+                <img src="./logo.png" alt="">
+                <span class="sidebar-title"><a href="">Dashboard</a></span>
+            </div>
+            <ul>
+                <li class="sidebar-item"><a class="sidebar-link" href="/admindashboard"><i class="fa-solid fa-house-chimney"></i>Home</a></li>
+                <li class="sidebar-item"><a class="sidebar-link" href="/reviews"><i class="fa-solid fa-user"></i>Students Reviews</a></li>
+                <li class="sidebar-item" id="settings"><a class="sidebar-link" href="/"><i class="fa-solid fa-arrow-right-from-bracket"></i>LogOut</a></li>
+            </ul>
+        </div>
+        <div class="right-content form-container" style=" overflow-y: auto;">
+            <header style="position: sticky;">
+                <h1>College Facilities Review</h1>
+            </header>
+            <div class="container">
+                <form id="reviewForm" action="/submit-facilities" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="collegeName">College Name:</label>
+                        <input type="text" id="collegeName" name="collegeName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="park">1.Is there a park at your institute?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="park" value="yes" id="parkYes" required>
+                            <label class="form-check-label" for="parkYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="park" value="no" id="parkNo">
+                            <label class="form-check-label" for="parkNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gym">2.Is there a gym at your institute?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="gym" value="yes" id="gymYes" required>
+                            <label class="form-check-label" for="gymYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="gym" value="no" id="gymNo">
+                            <label class="form-check-label" for="gymNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ground">3.Is there a ground at your institute?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="ground" value="yes" id="groundYes" required>
+                            <label class="form-check-label" for="groundYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="ground" value="no" id="groundNo">
+                            <label class="form-check-label" for="groundNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sportsEvents">4. Are there any sports events at your institute?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="sportsEvents" value="yes" id="sportsEventsYes">
+                            <label class="form-check-label" for="sportsEventsYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="sportsEvents" value="no" id="sportsEventsNo">
+                            <label class="form-check-label" for="sportsEventsNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="canteen">5.Is there a canteen at your institute?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="canteen" value="yes" id="canteenYes">
+                            <label class="form-check-label" for="canteenYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="canteen" value="no" id="canteenNo">
+                            <label class="form-check-label" for="canteenNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="library">6. Do you find the library facilities satisfactory?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="library" value="yes" id="libraryYes">
+                            <label class="form-check-label" for="libraryYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="library" value="no" id="libraryNo">
+                            <label class="form-check-label" for="libraryNo">No</label>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label>7. Is the institute well-equipped with modern technology and infrastructure?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="infrastructure" value="yes" id="infrastructureYes">
+                            <label class="form-check-label" for="infrastructureYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="infrastructure" value="no" id="infrastructureNo">
+                            <label class="form-check-label" for="infrastructureNo">No</label>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label>8. Have you had access to quality study materials and resources?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="studyMaterials" value="yes" id="studyMaterialsYes">
+                            <label class="form-check-label" for="studyMaterialsYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="studyMaterials" value="no" id="studyMaterialsNo">
+                            <label class="form-check-label" for="studyMaterialsNo">No</label>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label>9. Are there any industry-specific workshops or training programs available?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="industryWorkshops" value="yes" id="industryWorkshopsYes">
+                            <label class="form-check-label" for="industryWorkshopsYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="industryWorkshops" value="no" id="industryWorkshopsNo">
+                            <label class="form-check-label" for="industryWorkshopsNo">No</label>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label>10. Do you have access to a well-maintained computer lab?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="computerLab" value="yes" id="computerLabYes">
+                            <label class="form-check-label" for="computerLabYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="computerLab" value="no" id="computerLabNo">
+                            <label class="form-check-label" for="computerLabNo">No</label>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label>11. Are there opportunities for internships and real-world experience?</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="internshipOpportunities" value="yes" id="internshipOpportunitiesYes">
+                            <label class="form-check-label" for="internshipOpportunitiesYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="internshipOpportunities" value="no" id="internshipOpportunitiesNo">
+                            <label class="form-check-label" for="internshipOpportunitiesNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>12. Any additional comments or suggestions:</label>
+                        <textarea class="form-control" name="comments" rows="4"></textarea>
+                    </div>
+                    <div class="image-upload">
+                        <h3>Upload Your College Image</h3>
+                        <br>
+                        <input type="file" name="image" id="file" class="inputfile" accept=".png, .jpg, .jpeg" required>
+                        <label for="file">Choose one image of your college</label>
+                        <div id="image-preview"></div>
+                    </div>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        const fileInput = document.getElementById('file');
+        const imagePreview = document.getElementById('image-preview');
+
+        fileInput.addEventListener('change', function () {
+            const files = Array.from(fileInput.files);
+            files.forEach((file) => {
+                if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    imagePreview.appendChild(img);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

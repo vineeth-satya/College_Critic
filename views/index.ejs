@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Page Title</title>
+  <style>
+    body, h1, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      background-image: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .text-area {
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #1a75ff;
+      border-radius: 10px;
+      resize: none;
+      height: 200px;
+      transition: border 0.3s;
+    }
+
+    textarea:hover {
+      border-color: #004080;
+    }
+
+    textarea:focus {
+      border-color: #0073e6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="background-image"></div>
+    <div class="content">
+      <div class="text-area">
+        <form action="/studentreview" method="post">
+          <h1>Review:</h1>
+          <p>Email: <%=studentEmail %></p>
+          <p>College Name: <%=collegeName %></p>
+          <textarea id="userInput" name="review" rows="6" maxlength="1000" placeholder="Enter your review on your college (up to 1000 characters)"></textarea>
+          <input type="hidden" name="email" value="<%= studentEmail %>">
+          <input type="hidden" name="college" value="<%= collegeName %>">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
